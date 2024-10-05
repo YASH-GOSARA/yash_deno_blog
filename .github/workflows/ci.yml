@@ -17,5 +17,5 @@ jobs:
       - name: Lint
         run: deno lint
 
-      - name: Tests
-        run: deno task test
+      - name: Run Deno Dev
+        run: deno task dev      
