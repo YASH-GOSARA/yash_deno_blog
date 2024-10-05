@@ -14,6 +14,7 @@ import {
   Feed,
   Fragment,
   fromFileUrl,
+  toFileUrl,
   frontMatter,
   gfm,
   h,
@@ -173,6 +174,7 @@ export async function configureBlog(
   let directory;
 
   try {
+    url = toFileUrl(url)
     const blogPath = fromFileUrl(IS_DEV ? `file://${url}` : url);
     directory = dirname(blogPath);
   } catch (e) {
