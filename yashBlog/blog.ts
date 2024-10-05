@@ -11,5 +11,6 @@ blog({
     { title: "GitHub", url: "https://github.com/YASH-GOSARA" },
     { title: "X", url: "https://x.com/YashGosara" },
   ],
-  favicon: "/blogAssets/images/favicon/favicon.ico"
+  favicon: "/blogAssets/images/favicon/favicon.ico",
+  hostname: "www.theyashperspective.work.gd"
 });
