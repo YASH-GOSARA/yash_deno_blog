@@ -7,6 +7,7 @@
 /// <reference lib="dom.asynciterable" />
 /// <reference lib="deno.ns" />
 
+// deno-lint-ignore no-unused-vars
 import { Fragment, gfm, h } from "./deps.ts";
 import type { BlogState, DateFormat, Post } from "./types.d.ts";
 
@@ -126,6 +127,7 @@ export function Index({ state, posts }: IndexProps) {
 function PostCard({
   post,
   dateFormat,
+  // deno-lint-ignore no-unused-vars
   lang,
 }: {
   post: Post;
@@ -227,6 +229,7 @@ export function PostPage({ post, state }: PostPageProps) {
   );
 }
 
+// deno-lint-ignore no-unused-vars
 function Footer(props: { author?: string }) {
   return (
     <footer class="mt-20 pb-16 lt-sm:pb-8 lt-sm:mt-16">
