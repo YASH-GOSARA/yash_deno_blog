@@ -30,7 +30,7 @@ export function Index({ state, posts }: IndexProps) {
     postIndex.push(post);
   }
   postIndex.sort(
-    (a, b) => (b.publishDate?.getTime() ?? 0) - (a.publishDate?.getTime() ?? 0),
+    (a, b) => (b.publishDate?.getTime() ?? 0) - (a.publishDate?.getTime() ?? 0)
   );
 
   return (
@@ -63,7 +63,7 @@ export function Index({ state, posts }: IndexProps) {
             </h1>
             {state.description && (
               <p
-                class="text-lg text-gray-600 dark:text-gray-400"
+                class="text-lg text-gray-600 dark:text-gray-400 mt-3"
                 style={{ color: state.coverTextColor }}
               >
                 {state.description}
@@ -78,7 +78,7 @@ export function Index({ state, posts }: IndexProps) {
                     Icon = IconEmail;
                   } else {
                     const icon = socialAppIcons.get(
-                      url.hostname.replace(/^www\./, ""),
+                      url.hostname.replace(/^www\./, "")
                     );
                     if (icon) {
                       Icon = icon;
@@ -89,9 +89,9 @@ export function Index({ state, posts }: IndexProps) {
                     <a
                       class="relative flex items-center justify-center w-8 h-8 rounded-full bg-gray-600/10 dark:bg-gray-400/10 text-gray-700 dark:text-gray-400 hover:bg-gray-600/15 dark:hover:bg-gray-400/15 hover:text-black dark:hover:text-white transition-colors group"
                       href={link.url}
-                      rel={link.target === "_blank"
-                        ? "noopener noreferrer"
-                        : ""}
+                      rel={
+                        link.target === "_blank" ? "noopener noreferrer" : ""
+                      }
                       target={link.target ?? "_self"}
                     >
                       {link.icon ? link.icon : <Icon />}
@@ -123,13 +123,15 @@ export function Index({ state, posts }: IndexProps) {
   );
 }
 
-function PostCard(
-  { post, dateFormat, lang }: {
-    post: Post;
-    dateFormat?: DateFormat;
-    lang?: string;
-  },
-) {
+function PostCard({
+  post,
+  dateFormat,
+  lang,
+}: {
+  post: Post;
+  dateFormat?: DateFormat;
+  lang?: string;
+}) {
   return (
     <div class="pt-12 first:pt-0">
       <h3 class="text-2xl font-bold">
@@ -139,11 +141,8 @@ function PostCard(
       </h3>
       <Tags tags={post.tags} />
       <p class="text-gray-500/80">
-        {post.author && <span>{post.author} {" "}</span>}
-        <PrettyDate
-          date={post.publishDate}
-          dateFormat={dateFormat}
-        />
+        {post.author && <span>{post.author} </span>}
+        <PrettyDate date={post.publishDate} dateFormat={dateFormat} />
       </p>
       <p class="mt-3 text-gray-600 dark:text-gray-400">{post.snippet}</p>
       <p class="mt-3">
@@ -203,17 +202,13 @@ export function PostPage({ post, state }: PostPageProps) {
           <h1 class="text-4xl text-gray-900 dark:text-gray-100 font-bold">
             {post.title}
           </h1>
-          {state.readtime &&
-            <p>{post.readTime} min read</p>}
+          {state.readtime && <p>{post.readTime} min read</p>}
           <Tags tags={post.tags} />
           <p class="mt-1 text-gray-500">
             {(post.author || state.author) && (
               <p>{post.author || state.author}</p>
             )}
-            <PrettyDate
-              date={post.publishDate}
-              dateFormat={state.dateFormat}
-            />
+            <PrettyDate date={post.publishDate} dateFormat={state.dateFormat} />
           </p>
           <div
             class="mt-8 markdown-body"
@@ -237,13 +232,13 @@ function Footer(props: { author?: string }) {
     <footer class="mt-20 pb-16 lt-sm:pb-8 lt-sm:mt-16">
       <p class="flex items-center gap-2.5 text-gray-400/800 dark:text-gray-500/800 text-sm">
         <span>
-          Powered by{" "}
-          <a
+          Made by Yash with {IconHeart()}
+          {/*<a
             class="inline-flex items-center gap-1 underline hover:text-gray-800 dark:hover:text-gray-200 transition-colors"
             href="https://deno.land/x/blog"
           >
             Deno Blog
-          </a>
+          </a> */}
         </span>
         <a
           href="/feed"
@@ -260,7 +255,9 @@ function Footer(props: { author?: string }) {
 function Tooltip({ children }: { children: string }) {
   return (
     <div
-      className={"absolute top-10 px-3 h-8 !leading-8 bg-black/80 text-white text-sm rounded-md whitespace-nowrap opacity-0 group-hover:opacity-100 group-focus:opacity-100 transition-opacity"}
+      className={
+        "absolute top-10 px-3 h-8 !leading-8 bg-black/80 text-white text-sm rounded-md whitespace-nowrap opacity-0 group-hover:opacity-100 group-focus:opacity-100 transition-opacity"
+      }
     >
       <span
         className="block absolute text-black/80"
@@ -285,12 +282,13 @@ function Tooltip({ children }: { children: string }) {
   );
 }
 
-function PrettyDate(
-  { date, dateFormat }: {
-    date: Date;
-    dateFormat?: DateFormat;
-  },
-) {
+function PrettyDate({
+  date,
+  dateFormat,
+}: {
+  date: Date;
+  dateFormat?: DateFormat;
+}) {
   let formatted;
   if (dateFormat) {
     formatted = dateFormat(date);
@@ -301,17 +299,15 @@ function PrettyDate(
 }
 
 function Tags({ tags }: { tags?: string[] }) {
-  return tags && tags.length > 0
-    ? (
-      <section class="flex gap-x-2 flex-wrap">
-        {tags?.map((tag) => (
-          <a class="text-bluegray-500 font-bold" href={`/?tag=${tag}`}>
-            #{tag}
-          </a>
-        ))}
-      </section>
-    )
-    : null;
+  return tags && tags.length > 0 ? (
+    <section class="flex gap-x-2 flex-wrap">
+      {tags?.map((tag) => (
+        <a class="text-bluegray-500 font-bold" href={`/?tag=${tag}`}>
+          #{tag}
+        </a>
+      ))}
+    </section>
+  ) : null;
 }
 
 function IconRssFeed() {
@@ -395,14 +391,14 @@ function IconTwitter() {
 function IconX() {
   return (
     <svg
-      className="inline-block w-5 h-5"
-      viewBox="0 0 20 20"
+      className="inline-block w-4 h-4"
+      viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
-        d="M86.8918 28.25H99.0219L72.5243 58.5334L103.698 99.75H79.285L60.1647 74.7536L38.2929 99.75H26.1627L54.5069 67.3565L24.5938 28.25H49.6199L66.9004 51.0974L86.8918 28.25ZM82.6337 92.4904H89.3555L45.9716 35.1301H38.7584L82.6337 92.4904Z"
-        fill="black"
+        fill="currentColor"
+        d="M14.095479,10.316482L22.286354,1h-1.940718l-7.115352,8.087682L7.551414,1H1l8.589488,12.231093L1,23h1.940717  l7.509372-8.542861L16.448587,23H23L14.095479,10.316482z M11.436522,13.338465l-0.871624-1.218704l-6.924311-9.68815h2.981339  l5.58978,7.82155l0.867949,1.218704l7.26506,10.166271h-2.981339L11.436522,13.338465z"
       />
     </svg>
   );
@@ -451,6 +447,22 @@ function IconMastodon() {
       <path
         d="m 19.511621,6.5529853 c 0,-4.3325586 -2.858596,-5.62785744 -2.858596,-5.62785744 -2.769261,-1.25063495 -10.183739,-1.25063495 -12.9530035,0 0,0 -2.85859381,1.29529884 -2.85859381,5.62785744 0,5.1811997 -0.31265876,11.6130377 4.73454581,12.9083367 1.7866208,0.491322 3.3499146,0.580654 4.6005495,0.53599 2.277943,-0.134007 3.528578,-0.803981 3.528578,-0.803981 l -0.04466,-1.652625 c 0,0 -1.652625,0.491322 -3.483914,0.446655 -1.7866155,-0.08935 -3.7072318,-0.22332 -3.9752264,-2.41194 l -0.044657,-0.625317 c 3.8412328,0.937976 7.1018194,0.40199 7.9951284,0.312669 2.50127,-0.312669 4.689881,-1.875951 4.957876,-3.260582 0.446654,-2.2332757 0.40199,-5.4491947 0.40199,-5.4491947 z M 16.161703,12.136176 H 14.062424 V 7.0443035 c 0,-2.2332752 -2.858594,-2.3226069 -2.858594,0.312669 V 10.170902 H 9.1492155 V 7.3569732 c 0,-2.5905977 -2.8585926,-2.5459339 -2.8585926,-0.312669 v 5.0918718 h -2.09928 c 0,-5.4491951 -0.223321,-6.6104988 0.8039772,-7.8164697 1.1613071,-1.2952989 3.5732455,-1.3399665 4.6452174,0.2679762 l 0.5359855,0.8933087 0.535986,-0.8933087 c 1.071975,-1.6526252 3.483913,-1.5186297 4.60055,-0.2679762 1.071975,1.2506352 0.848644,2.3672746 0.848644,7.8164697 z"
         fill="currentColor"
+      />
+    </svg>
+  );
+}
+
+function IconHeart() {
+  return (
+    <svg
+      className="inline-block w-4 h-4 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors group"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 302.489 302.489"
+      fill="none"
+    >
+      <path
+        fill="currentColor"
+        d="M302.351,98.012c-1.116-20.846-9.942-40.422-24.855-55.122c-15.103-14.887-34.811-23.086-55.491-23.086  c-30.776,0-53.082,24.334-65.065,37.408c-1.85,2.019-4.018,4.384-5.527,5.827c-1.208-1.25-2.845-3.114-4.351-4.828  c-10.944-12.466-33.72-38.406-66.571-38.406c-20.68,0-40.387,8.199-55.49,23.086C10.087,57.59,1.259,77.165,0.143,98.012  c-1.111,20.812,4.212,38.921,17.26,58.72c10.324,15.669,37.545,46.266,66.195,74.408c14.757,14.495,28.339,26.779,39.277,35.524  c17.762,14.2,24.565,16.021,28.506,16.021c3.695,0,10.683-1.657,28.615-15.981c10.913-8.717,24.448-20.982,39.143-35.468  c28.393-27.99,55.515-58.628,65.956-74.507C293.877,143.372,303.774,124.629,302.351,98.012z"
       />
     </svg>
   );

@@ -8,8 +8,8 @@ import {
 } from "https://deno.land/std@0.193.0/testing/asserts.ts";
 import { fromFileUrl, join } from "https://deno.land/std@0.193.0/path/mod.ts";
 
-const BLOG_URL = new URL("./testdata/main.js", import.meta.url).href;
-const TESTDATA_PATH = fromFileUrl(new URL("./testdata/", import.meta.url));
+const BLOG_URL = new URL("./yashBlog/main.js", import.meta.url).href;
+const TESTDATA_PATH = fromFileUrl(new URL("./yashBlog/", import.meta.url));
 const BLOG_SETTINGS = await configureBlog(BLOG_URL, false, {
   author: "The author",
   title: "Test blog",
