@@ -56,7 +56,7 @@ export function Index({ state, posts }: IndexProps) {
               />
             )}
             <h1
-              class="mt-3 text-4xl text-gray-900 dark:text-gray-100 font-bold"
+              class="mt-3 text-4xl text-gray-900 dark:text-gray-100 font-bold text-center"
               style={{ color: state.coverTextColor }}
             >
               {state.title ?? "My Blog"}
