@@ -29,3 +29,4 @@ jobs:
           project: "yash-deno-blog"
           entrypoint: "yashBlog/blog.ts"
           root: ""
+
