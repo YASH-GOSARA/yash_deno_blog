@@ -29,3 +29,7 @@ jobs:
           project: "yash-deno-blog"
           entrypoint: "yashBlog/blog.ts"
           root: ""
+
+      - name: Start App
+        run: deno task prod
+
