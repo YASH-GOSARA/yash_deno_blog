@@ -15,7 +15,7 @@ export {
 } from "https://deno.land/std@0.193.0/http/mod.ts";
 export { extract as frontMatter } from "https://deno.land/std@0.193.0/front_matter/any.ts";
 
-export * as gfm from "https://deno.land/x/gfm@0.2.5/mod.ts";
+export * as gfm from "@deno/gfm";
 export { Fragment, h } from "https://deno.land/x/htm@0.1.3/mod.ts";
 export {
   default as html,

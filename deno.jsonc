@@ -4,5 +4,8 @@
     "dev": "deno run  --allow-net --allow-read --allow-env=NODE_DEBUG --watch --no-check yashBlog/blog.ts --dev",
     "test": "deno test --no-check=remote --allow-read",
     "prod": "deno run --allow-net --allow-read --allow-env yashBlog/blog.ts"
+  },
+  "imports": {
+    "@deno/gfm": "jsr:@deno/gfm@^0.9.0"
   }
 }
