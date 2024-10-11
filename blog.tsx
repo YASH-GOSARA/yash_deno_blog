@@ -174,8 +174,8 @@ export async function configureBlog(
   let directory;
 
   try {
-    url = toFileUrl(url)
-    const blogPath = fromFileUrl(IS_DEV ? `file://${url}` : url);
+    const absUrl = toFileUrl(url)
+    const blogPath = fromFileUrl(IS_DEV ? `file://${absUrl}` : absUrl);
     directory = dirname(blogPath);
   } catch (e) {
     console.error(e);
@@ -233,7 +233,7 @@ async function watchForChanges(postsDirectory: string) {
             HMR_SOCKETS.forEach((socket) => {
               socket.send("refresh");
             });
-          } catch (err) {
+          } catch (err: any) {
             console.error(`loadPost ${path} error:`, err.message);
           }
         }
@@ -435,7 +435,7 @@ export async function handler(
   try {
     await Deno.lstat(join(blogState.directory, "./posts", pathname));
     fsRoot = join(blogState.directory, "./posts");
-  } catch (e) {
+  } catch (e: any) {
     if (!(e instanceof Deno.errors.NotFound)) {
       console.error(e);
       return new Response(e.message, { status: 500 });
@@ -553,7 +553,7 @@ export function redirects(redirectMap: Record<string, string>): BlogMiddleware {
     }
     try {
       return await ctx.next();
-    } catch (e) {
+    } catch (e: any) {
       console.error(e);
       return new Response(`Internal server error: ${e.message}`, {
         status: 500,
