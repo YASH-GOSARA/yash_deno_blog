@@ -1,7 +1,7 @@
 {
   "lock": false,
   "tasks": {
-    "dev": "deno run  --allow-net --allow-read --allow-env=NODE_DEBUG --watch --no-check yashBlog/blog.ts --dev",
+    "dev": "deno run --allow-net --allow-read --allow-env --watch yashBlog/blog.ts",
     "test": "deno test --no-check=remote --allow-read",
     "prod": "deno run --allow-net --allow-read --allow-env yashBlog/blog.ts"
   },
